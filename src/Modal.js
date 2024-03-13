@@ -1,6 +1,6 @@
 export default class Modal {
-    constructor(elementId) {
-        this.contentTemplate = document.getElementById(elementId);
+    constructor(message) {
+        this.message = message;
         this.modalTemplate = document.getElementById("modal-template");
     }
 
@@ -18,9 +18,13 @@ export default class Modal {
             );
             modalBackdrop = modalTemplateNode.firstElementChild;
             const modalMain = modalTemplateNode.lastElementChild;
+            modalMain.insertAdjacentText("afterbegin", this.message);
 
             document.body.insertAdjacentElement("afterbegin", modalBackdrop);
-            document.body.insertAdjacentElement("afterbegin", modalMain);
+            document.body.insertAdjacentElement(
+                "afterbegin",
+                modalMain
+            ).style.display = "block";
         } else {
             const status = modalBackdrop.style.display;
             if (status === "none") {

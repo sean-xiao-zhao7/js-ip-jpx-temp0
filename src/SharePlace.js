@@ -1,5 +1,3 @@
-import Modal from "./Modal";
-
 export default class PlaceFinder {
     constructor() {
         const addressForm = document.querySelector("form");
@@ -30,8 +28,6 @@ export default class PlaceFinder {
                     long: successResult.coords.longitude,
                 };
                 locateUserButton.disabled = false;
-                const modal = new Modal();
-                modal.toggle();
             },
             (error) => {
                 console.log(error.message);
