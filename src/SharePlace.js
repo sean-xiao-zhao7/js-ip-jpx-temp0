@@ -27,10 +27,10 @@ class PlaceFinder {
                     lat: successResult.coords.latitude,
                     long: successResult.coords.longitude,
                 };
-                console.log(coordinates);
                 locateUserButton.disabled = false;
             },
             (error) => {
+                console.log(error.message);
                 alert("Failed to get current location due to error.");
                 locateUserButton.disabled = false;
                 return;
