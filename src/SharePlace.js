@@ -8,7 +8,7 @@ class PlaceFinder {
     }
 
     // handles user trying to get current location
-    locateUserButton(event) {
+    locateUserHandler(event) {
         if (!navigator.geolocation) {
             alert(
                 "Location feature is not available in your browser. Please use a modern browser."
