@@ -1,14 +1,29 @@
 class Modal {
     constructor(elementId) {
-        this.contentTemplateElement = document.getElementById(elementId);
+        this.contentTemplate = document.getElementById(elementId);
+        this.modalTemplate = document.getElementById("modal-template");
     }
 
     toggle() {
-        const status = this.contentTemplateElement.style.display;
+        if (!("content" in document.createElement("template"))) {
+            return;
+        }
+
+        // clone template element into document
+        const modalTemplateNode = document.importNode(
+            this.modalTemplate.content,
+            true
+        );
+        const modalBackdrop = modalTemplateNode.firstElementChild();
+        const modalMain = modalTemplateNode.lastsElementChild();
+
+        const status = modalBackdrop.style.display;
         if (status === "none") {
-            this.contentTemplateElement.style.display = "block";
+            modalBackdrop.style.display = "block";
+            modalMain.style.display = "block";
         } else {
-            this.contentTemplateElement.style.display = "none";
+            modalBackdrop.style.display = "none";
+            modalMain.style.display = "none";
         }
     }
 }
